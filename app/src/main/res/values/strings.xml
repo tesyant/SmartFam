@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Rental</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup">Sign up</string>
+    <string name="enter_email">Enter Your Email Address!</string>
+    <string name="enter_password">Enter Your Password!</string>
+    <string name="password_short">Password too short, enter minimum 8 characters</string>
+    <string name="isSuccessful">Sign up :</string>
+    <string name="auth">Authentication failed :</string>
+    <string name="successful">Successful</string>
+</resources>

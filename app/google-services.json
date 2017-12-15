@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "930795440645",
+    "firebase_url": "https://rental-mobilmotor.firebaseio.com",
+    "project_id": "rental-mobilmotor",
+    "storage_bucket": "rental-mobilmotor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930795440645:android:96dd6d31eea6e887",
+        "android_client_info": {
+          "package_name": "com.lulua.tesyant.rental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930795440645-1j0t5bddhgf8phkf8r8k18rthtvnb377.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiojpQp5lr5erChDOg_eUzzdN4SwXEnns"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
