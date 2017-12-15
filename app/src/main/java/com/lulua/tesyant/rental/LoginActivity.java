@@ -1,9 +1,9 @@
 package com.lulua.tesyant.rental;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,71 +15,76 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
-public class SignUpActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "";
-    private EditText edtEmail, edtPassword;
-    private Button btnSignup;
-    private FirebaseAuth auth;
+    EditText edtEmail, edtPassword;
+    Button btnLogin;
+    FirebaseAuth auth;
+
+    public String TAG = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_login);
+
+
+
 
         auth = FirebaseAuth.getInstance();
-
         edtEmail = findViewById(R.id.edt_email);
         edtPassword = findViewById(R.id.edt_password);
-        btnSignup = findViewById(R.id.btn_signup);
-        btnSignup.setOnClickListener(new View.OnClickListener() {
+        btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String email = edtEmail.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
+                final String password = edtPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
-                    return;
+                    Toast.makeText(getApplicationContext(), "Enter email!", Toast.LENGTH_SHORT).show();
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
-                    return;
+                    Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
                 }
 
                 if (password.length() < 8) {
                     edtPassword.setError("Password too short. Enter minimum 8 characters!");
                 }
 
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.d(TAG, "is complete " + task.isSuccessful());
                                 if (!task.isSuccessful()) {
                                     try {
                                         throw task.getException();
                                     }
-                                    catch (FirebaseAuthUserCollisionException emailExists) {
-                                        Toast.makeText(SignUpActivity.this, "Email has been already registered", Toast.LENGTH_SHORT).show();
+                                    catch (FirebaseAuthInvalidUserException invalidEmail) {
+                                        Toast.makeText(LoginActivity.this, "Email has not been registered",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch (FirebaseAuthInvalidCredentialsException invalidPassword) {
+                                        Toast.makeText(LoginActivity.this, "Oops. Password wrong!",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                     catch (Exception e) {
-                                        Log.d(TAG, "On Complete " + e.getMessage());
+                                        Log.e(TAG, "error" + e);
                                     }
                                 }
-
                                 else {
-                                    Toast.makeText(getApplicationContext(), R.string.successful, Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     finish();
                                 }
                             }
                         });
+
             }
         });
     }
-
 }

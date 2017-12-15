@@ -9,4 +9,5 @@
     <string name="isSuccessful">Sign up :</string>
     <string name="auth">Authentication failed :</string>
     <string name="successful">Successful</string>
+    <string name="login">Login</string>
 </resources>
