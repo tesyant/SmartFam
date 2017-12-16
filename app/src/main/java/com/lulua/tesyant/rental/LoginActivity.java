@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
-    Button btnLogin;
+    Button btnLogin, btnForgot, btnCreate;
     FirebaseAuth auth;
 
     public String TAG = "";
@@ -31,13 +31,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
-
         auth = FirebaseAuth.getInstance();
         edtEmail = findViewById(R.id.edt_email);
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btn_login);
+        btnForgot = findViewById(R.id.btn_forgotPass);
+        btnCreate = findViewById(R.id.btn_createAccount);
+
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
