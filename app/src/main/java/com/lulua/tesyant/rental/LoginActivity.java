@@ -20,9 +20,9 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText edtEmail, edtPassword;
-    Button btnLogin, btnForgot, btnCreate;
-    FirebaseAuth auth;
+    private EditText edtEmail, edtPassword;
+    private Button btnLogin, btnForgot, btnCreate;
+    private FirebaseAuth auth;
 
     public String TAG = "";
 
@@ -38,12 +38,20 @@ public class LoginActivity extends AppCompatActivity {
         btnForgot = findViewById(R.id.btn_forgotPass);
         btnCreate = findViewById(R.id.btn_createAccount);
 
+        btnForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ResetPassActivity.class));
+            }
+        });
+
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
+        
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

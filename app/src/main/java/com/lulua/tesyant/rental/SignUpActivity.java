@@ -41,12 +41,12 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = edtPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter email", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Eanter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -72,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
 
                                 else {
-                                    Toast.makeText(getApplicationContext(), R.string.successful, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                                     finish();
                                 }

@@ -3,11 +3,13 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="signup">Sign up</string>
-    <string name="enter_email">Enter Your Email Address!</string>
-    <string name="enter_password">Enter Your Password!</string>
-    <string name="password_short">Password too short, enter minimum 8 characters</string>
-    <string name="isSuccessful">Sign up :</string>
-    <string name="auth">Authentication failed :</string>
-    <string name="successful">Successful</string>
     <string name="login">Login</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="reset_pass">Reset Password</string>
+    <string name="reset_instructions">We just need your registered Email address to sent you password reset instructions</string>
 </resources>
