@@ -59,15 +59,15 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = edtPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
                 }
 
                 if (password.length() < 8) {
-                    edtPassword.setError("Password too short. Enter minimum 8 characters!");
+                    edtPassword.setError(getString(R.string.password_short));
                 }
 
                 auth.signInWithEmailAndPassword(email, password)
@@ -79,11 +79,11 @@ public class LoginActivity extends AppCompatActivity {
                                         throw task.getException();
                                     }
                                     catch (FirebaseAuthInvalidUserException invalidEmail) {
-                                        Toast.makeText(LoginActivity.this, "Email has not been registered",
+                                        Toast.makeText(LoginActivity.this, R.string.email_not_registered,
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                     catch (FirebaseAuthInvalidCredentialsException invalidPassword) {
-                                        Toast.makeText(LoginActivity.this, "Oops. Password wrong!",
+                                        Toast.makeText(LoginActivity.this, R.string.password_wrong,
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                     catch (Exception e) {
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
                                 else {
-                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), R.string.login_successful, Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     finish();
                                 }

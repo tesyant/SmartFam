@@ -41,38 +41,38 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = edtPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Eanter password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 8) {
-                    edtPassword.setError("Password too short. Enter minimum 8 characters!");
+                    edtPassword.setError(getString(R.string.password_short));
                 }
 
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.d(TAG, "is complete " + task.isSuccessful());
+                                Log.d(TAG, getString(R.string.is_complete) + task.isSuccessful());
                                 if (!task.isSuccessful()) {
                                     try {
                                         throw task.getException();
                                     }
                                     catch (FirebaseAuthUserCollisionException emailExists) {
-                                        Toast.makeText(SignUpActivity.this, "Email has been already registered", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUpActivity.this, R.string.email_registered, Toast.LENGTH_SHORT).show();
                                     }
                                     catch (Exception e) {
-                                        Log.d(TAG, "On Complete " + e.getMessage());
+                                        Log.d(TAG, R.string.on_complate + e.getMessage());
                                     }
                                 }
 
                                 else {
-                                    Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), R.string.successful, Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                                     finish();
                                 }
